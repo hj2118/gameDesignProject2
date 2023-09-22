@@ -23,13 +23,13 @@ public class EnemyAI : MonoBehaviour
             int val_to_alter = Random.Range(1, 10);
             if (give_or_steal == 0)
             {
-                PublicVars.playerResources[res_to_alter] -= val_to_alter;
-                PublicVars.enemyResources[res_to_alter] += val_to_alter;
+                PublicVars.Instance.playerResources[res_to_alter] -= val_to_alter;
+                PublicVars.Instance.enemyResources[res_to_alter] += val_to_alter;
             }
             else
             {
-                PublicVars.playerResources[res_to_alter] += val_to_alter;
-                PublicVars.enemyResources[res_to_alter] -= val_to_alter;
+                PublicVars.Instance.playerResources[res_to_alter] += val_to_alter;
+                PublicVars.Instance.enemyResources[res_to_alter] -= val_to_alter;
             }
             timer = 0;
         }
