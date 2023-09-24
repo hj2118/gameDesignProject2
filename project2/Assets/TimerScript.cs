@@ -6,7 +6,12 @@ using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
+    public float elapsedTime = 0.0f;
+
+    public float elapsedTime2 = 0.0f;
+
     public TextMeshProUGUI timerText;
+
     public TextMeshProUGUI foodText;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI populationText;
@@ -14,26 +19,92 @@ public class TimerScript : MonoBehaviour
     public TextMeshProUGUI stoneText;
     public TextMeshProUGUI waterText;
 
-    public Dictionary<BuildingScript.BuildingType, TextMeshProUGUI> resourceDisplays = new Dictionary<BuildingScript.BuildingType, TextMeshProUGUI>();
-    public Dictionary<BuildingScript.BuildingType, int> resources = new Dictionary<BuildingScript.BuildingType, int>();
-    public Dictionary<BuildingScript.BuildingType, int> buildingCounts = new Dictionary<BuildingScript.BuildingType, int>();
-    public Dictionary<BuildingScript.BuildingType, string> resourceAmountStrings = new Dictionary<BuildingScript.BuildingType, string>();
-    public Dictionary<BuildingScript.BuildingType, string> resourceChangeStrings = new Dictionary<BuildingScript.BuildingType, string>();
+    private int food = 60;
+    private int money = 60;
+    private int population = 70;
+    private int army = 10;
+    private int stone = 65;
+    private int water = 75;
 
+    private int foodBuildingCount = 0;
+    private int moneyBuildingCount = 0;
+    private int populationBuildingCount = 0;
+    private int armyBuildingCount = 0;
+    private int stoneBuildingCount = 0;
+    private int waterBuildingCount = 0;
 
-    private float elapsedTime = 0f;
-    private float elapsedTime2 = 0f;
-
-    private void Start()
+    public int GetFood()
     {
-        InitializeResources();
-        UpdateResourceAmountStrings();
-        UpdateResourceChangeStrings();
+        return food;
+    }
+
+    public int GetMoney()
+    {
+        return money;
+    }
+
+    public int GetPopulation()
+    {
+        return population;
+    }
+
+    public int GetArmy()
+    {
+        return army;
+    }
+
+    public int GetStone()
+    {
+        return stone;
+    }
+
+    public int getWater()
+    {
+        return water;
+    }
+
+    public void setFood(int newFood)
+    {
+        food = newFood;
+    }
+
+    public void setMoney(int newMoney)
+    {
+        money = newMoney;
+    }
+
+    public void setPopulation(int newPopulation)
+    {
+        population = newPopulation;
+    }
+
+    public void setArmy(int newArmy)
+    {
+        army = newArmy;
+    }
+
+    public void setStone(int newStone)
+    {
+        stone = newStone;
+    }
+
+    public void getWater(int newWater)
+    {
+        water = newWater;
+    }
+
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
         UpdateResourceDisplay();
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
+        UpdateResourceDisplay();
         elapsedTime += Time.deltaTime;
         elapsedTime2 += Time.deltaTime;
 
@@ -44,149 +115,76 @@ public class TimerScript : MonoBehaviour
             FiveSecondMark();
             elapsedTime2 -= 5.0f;
         }
+        
     }
 
-    private void FiveSecondMark()
-    {
-        UpdateResources();
-        UpdateResourceAmountStrings();
-        UpdateResourceDisplay();
-    }
-
-    private void UpdateResources()
-    {
-        resources[BuildingScript.BuildingType.FoodBuilding] += CalculateFoodChange();
-        resources[BuildingScript.BuildingType.MoneyBuilding] += CalculateMoneyChange();
-        resources[BuildingScript.BuildingType.PopulationBuilding] += CalculatePopulationChange();
-        resources[BuildingScript.BuildingType.ArmyBuilding] += CalculateArmyChange();
-        resources[BuildingScript.BuildingType.StoneBuilding] += CalculateStoneChange();
-        resources[BuildingScript.BuildingType.WaterBuilding] += CalculateWaterChange();
-    }
-
-    private int CalculateFoodChange()
-    {
-        return (2 * buildingCounts[BuildingScript.BuildingType.FoodBuilding])
-                - (14 * buildingCounts[BuildingScript.BuildingType.PopulationBuilding])
-                - (12 * buildingCounts[BuildingScript.BuildingType.ArmyBuilding]);
-    }
-
-    private int CalculateMoneyChange()
-    {
-        return (18 * buildingCounts[BuildingScript.BuildingType.MoneyBuilding])
-                - (13 * buildingCounts[BuildingScript.BuildingType.FoodBuilding])
-                - (12 * buildingCounts[BuildingScript.BuildingType.ArmyBuilding])
-                - (3 * buildingCounts[BuildingScript.BuildingType.StoneBuilding]);
-    }
-
-    private int CalculatePopulationChange()
-    {
-        return (3 * buildingCounts[BuildingScript.BuildingType.PopulationBuilding])
-                - (9 * buildingCounts[BuildingScript.BuildingType.MoneyBuilding])
-                - (4 * buildingCounts[BuildingScript.BuildingType.StoneBuilding])
-                - (4 * buildingCounts[BuildingScript.BuildingType.WaterBuilding]);
-    }
-
-    private int CalculateArmyChange()
-    {
-        return (4 * buildingCounts[BuildingScript.BuildingType.ArmyBuilding]);
-    }
-
-    private int CalculateStoneChange()
-    {
-        return (15 * buildingCounts[BuildingScript.BuildingType.StoneBuilding]);
-    }
-
-    private int CalculateWaterChange()
-    {
-        return (20 * buildingCounts[BuildingScript.BuildingType.WaterBuilding])
-        - (8 * buildingCounts[BuildingScript.BuildingType.FoodBuilding])
-        - (4 * buildingCounts[BuildingScript.BuildingType.PopulationBuilding]);
-    }
-
-    private void UpdateTimeDisplay()
+    void UpdateTimeDisplay()
     {
         int minutes = Mathf.FloorToInt(elapsedTime / 60F);
         int seconds = Mathf.FloorToInt(elapsedTime % 60F);
         timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
     }
 
-    private void InitializeResources()
+    void UpdateResourceDisplay()
     {
-        resourceDisplays[BuildingScript.BuildingType.FoodBuilding] = foodText;
-        resourceDisplays[BuildingScript.BuildingType.MoneyBuilding] = moneyText;
-        resourceDisplays[BuildingScript.BuildingType.PopulationBuilding] = populationText;
-        resourceDisplays[BuildingScript.BuildingType.ArmyBuilding] = armyText;
-        resourceDisplays[BuildingScript.BuildingType.StoneBuilding] = stoneText;
-        resourceDisplays[BuildingScript.BuildingType.WaterBuilding] = waterText;
-
-        resources[BuildingScript.BuildingType.FoodBuilding] = 60;
-        resources[BuildingScript.BuildingType.MoneyBuilding] = 60;
-        resources[BuildingScript.BuildingType.PopulationBuilding] = 70;
-        resources[BuildingScript.BuildingType.ArmyBuilding] = 20;
-        resources[BuildingScript.BuildingType.StoneBuilding] = 65;
-        resources[BuildingScript.BuildingType.WaterBuilding] = 75;
-
-        buildingCounts[BuildingScript.BuildingType.FoodBuilding] = 0;
-        buildingCounts[BuildingScript.BuildingType.MoneyBuilding] = 0;
-        buildingCounts[BuildingScript.BuildingType.PopulationBuilding] = 0;
-        buildingCounts[BuildingScript.BuildingType.ArmyBuilding] = 0;
-        buildingCounts[BuildingScript.BuildingType.StoneBuilding] = 0;
-        buildingCounts[BuildingScript.BuildingType.WaterBuilding] = 0;
-        buildingCounts[BuildingScript.BuildingType.StorageBuilding] = 1;
+        CountBuildings();
+        foodText.text = "Food: " + food + " (" + ((2 * foodBuildingCount) + (-14 * populationBuildingCount) + (-12 * armyBuildingCount)) + ")";
+        moneyText.text = "Money: " + money + " (" + ((18 * moneyBuildingCount) + (-13 * foodBuildingCount) + (-12 * armyBuildingCount) + (-3 * stoneBuildingCount)) + ")";
+        populationText.text = "Population: " + population + " (" + ((3 * populationBuildingCount) + (-9 * moneyBuildingCount) + (-4 * stoneBuildingCount) + (-4 * waterBuildingCount)) + ")";
+        armyText.text = "Army: " + army + " (" + (4 * armyBuildingCount) + ")";
+        stoneText.text = "Stone: " + stone + " (" + (15 * stoneBuildingCount) + ")";
+        waterText.text = "Water: " + water + " (" + ((20 * waterBuildingCount) + (-8 * foodBuildingCount) + (-4 * populationBuildingCount)) + ")";
     }
 
-    private void UpdateResourceAmountStrings()
+    void UpdateResources()
     {
-        resourceAmountStrings[BuildingScript.BuildingType.FoodBuilding] = "Food: " + resources[BuildingScript.BuildingType.FoodBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.MoneyBuilding] = "Money: " + resources[BuildingScript.BuildingType.MoneyBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.PopulationBuilding] = "Population: " + resources[BuildingScript.BuildingType.PopulationBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.ArmyBuilding] = "Army: " + resources[BuildingScript.BuildingType.ArmyBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.StoneBuilding] = "Stone: " + resources[BuildingScript.BuildingType.StoneBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.WaterBuilding] = "Water: " + resources[BuildingScript.BuildingType.WaterBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
+        food += (2 * foodBuildingCount) + (-14 * populationBuildingCount) + (-12 * armyBuildingCount);
+        money += (18 * moneyBuildingCount) + (-13 * foodBuildingCount) + (-12 * armyBuildingCount) + (-3 * stoneBuildingCount);
+        population += (3 * populationBuildingCount) + (-9 * moneyBuildingCount) + (-4 * stoneBuildingCount) + (-4 * waterBuildingCount);
+        army += (4 * armyBuildingCount);
+        stone += (15 * stoneBuildingCount);
+        water += (20 * waterBuildingCount) + (-8 * foodBuildingCount) + (-4 * populationBuildingCount);
     }
 
-    public void UpdateResourceChangeStrings()
+    void FiveSecondMark()
     {
-        resourceChangeStrings[BuildingScript.BuildingType.FoodBuilding] = "(" + (CalculateFoodChange() > 0 ? "+" + CalculateFoodChange() : CalculateFoodChange()) + ")";
-        resourceChangeStrings[BuildingScript.BuildingType.MoneyBuilding] = "(" + (CalculateMoneyChange() > 0 ? "+" + CalculateMoneyChange() : CalculateMoneyChange()) + ")";
-        resourceChangeStrings[BuildingScript.BuildingType.PopulationBuilding] = "(" + (CalculatePopulationChange() > 0 ? "+" + CalculatePopulationChange() : CalculatePopulationChange()) + ")";
-        resourceChangeStrings[BuildingScript.BuildingType.ArmyBuilding] = "(" + (CalculateArmyChange() > 0 ? "+" + CalculateArmyChange() : CalculateArmyChange()) + ")";
-        resourceChangeStrings[BuildingScript.BuildingType.StoneBuilding] = "(" + (CalculateStoneChange() > 0 ? "+" + CalculateStoneChange() : CalculateStoneChange()) + ")";
-        resourceChangeStrings[BuildingScript.BuildingType.WaterBuilding] = "(" + (CalculateWaterChange() > 0 ? "+" + CalculateWaterChange() : CalculateWaterChange()) + ")";
+        UpdateResources();
+        Debug.Log("5 seconds have passed");
     }
 
-    public void UpdateResourceDisplay()
-    {
-        foodText.text = resourceAmountStrings[BuildingScript.BuildingType.FoodBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.FoodBuilding];
-        moneyText.text = resourceAmountStrings[BuildingScript.BuildingType.MoneyBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.MoneyBuilding];
-        populationText.text = resourceAmountStrings[BuildingScript.BuildingType.PopulationBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.PopulationBuilding];
-        armyText.text = resourceAmountStrings[BuildingScript.BuildingType.ArmyBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.ArmyBuilding];
-        stoneText.text = resourceAmountStrings[BuildingScript.BuildingType.StoneBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.StoneBuilding];
-        waterText.text = resourceAmountStrings[BuildingScript.BuildingType.WaterBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.WaterBuilding];
-    }
-
-    private void CountBuildings()
+    void CountBuildings()
     {
         BuildingScript[] buildings = FindObjectsOfType<BuildingScript>();
-
-        Dictionary<BuildingScript.BuildingType, int> tempBuildingCounts = new Dictionary<BuildingScript.BuildingType, int>();
-
-        foreach (BuildingScript.BuildingType type in System.Enum.GetValues(typeof(BuildingScript.BuildingType)))
-        {
-            tempBuildingCounts[type] = 0;
-        }
+        foodBuildingCount = 0;
+        moneyBuildingCount = 0;
+        populationBuildingCount = 0;
+        armyBuildingCount = 0;
+        stoneBuildingCount = 0;
+        waterBuildingCount = 0;
 
         foreach (BuildingScript building in buildings)
         {
-            tempBuildingCounts[building.buildingType]++;
+            switch (building.buildingType)
+            {
+                case BuildingScript.BuildingType.FoodBuilding:
+                    foodBuildingCount++;
+                    break;
+                case BuildingScript.BuildingType.MoneyBuilding:
+                    moneyBuildingCount++;
+                    break;
+                case BuildingScript.BuildingType.PopulationBuilding:
+                    populationBuildingCount++;
+                    break;
+                case BuildingScript.BuildingType.ArmyBuilding:
+                    armyBuildingCount++;
+                    break;
+                case BuildingScript.BuildingType.StoneBuilding:
+                    stoneBuildingCount++;
+                    break;
+                case BuildingScript.BuildingType.WaterBuilding:
+                    waterBuildingCount++;
+                    break;
+            }
         }
-
-        buildingCounts = tempBuildingCounts;
     }
-
-    public void IncrementBuildingCount(BuildingScript.BuildingType buildingType)
-    {
-        buildingCounts[buildingType]++;
-    }
-
 }
