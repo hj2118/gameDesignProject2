@@ -2,24 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 
 public class PlaceBuildingButtonScript : MonoBehaviour
 {
     public Button buildBuilding;
     public GameObject buildPreFab;
-    public TimerScript timerScript;
-    public BuildingScript.BuildingType buildingType;
-
     private GameObject ghostBuilding;
     private SpriteRenderer ghostBuildingRenderer;
-
+    public TimerScript timerScript;
     
 
     public void OnButtonClick()
     {
-        Debug.Log("hey");
         if (!ghostBuilding)
         {
             ghostBuilding = Instantiate(buildPreFab);
@@ -36,9 +31,6 @@ public class PlaceBuildingButtonScript : MonoBehaviour
         full.a = 1f;
         ghostBuildingRenderer.color = full;
 
-        timerScript.IncrementBuildingCount(buildingType);
-        timerScript.UpdateResourceChangeStrings();
-        timerScript.UpdateResourceDisplay();
         ghostBuilding = null;
     }
 
@@ -57,5 +49,4 @@ public class PlaceBuildingButtonScript : MonoBehaviour
         }
         
     }
-
 }
