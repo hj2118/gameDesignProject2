@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 314824267}
   - component: {fileID: 314824266}
   - component: {fileID: 314824265}
+  - component: {fileID: 314824268}
   m_Layer: 5
   m_Name: AddArmy
   m_TagString: Untagged
@@ -439,7 +440,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 314824266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 314824268}
+        m_TargetAssemblyTypeName: PlaceBuildingButtonScript, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &314824266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +491,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314824263}
   m_CullTransparentMesh: 1
+--- !u!114 &314824268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314824263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed858db182944f04af461f1b3f04ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildBuilding: {fileID: 314824265}
+  buildPreFab: {fileID: 8293291892876215061, guid: d47eae01dde7c4d3bb361452ae64628f, type: 3}
+  timerScript: {fileID: 129923810}
 --- !u!1 &404970204
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildBuilding: {fileID: 564487509}
   buildPreFab: {fileID: 8854305536207658487, guid: 4536baa65cfa248da90cf6c743664473, type: 3}
+  timerScript: {fileID: 0}
 --- !u!1 &757389907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,6 +2185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildBuilding: {fileID: 1006355321}
   buildPreFab: {fileID: 7748814654456838308, guid: 5ece1ffac40db4e85a35efee5d901957, type: 3}
+  timerScript: {fileID: 0}
 --- !u!1 &1052377733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildBuilding: {fileID: 1052377735}
   buildPreFab: {fileID: 8574859202116072159, guid: 1d2a44597881547378fb6e2ece7633c2, type: 3}
+  timerScript: {fileID: 0}
 --- !u!1 &1138253300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,6 +2437,7 @@ GameObject:
   - component: {fileID: 1243544832}
   - component: {fileID: 1243544831}
   - component: {fileID: 1243544830}
+  - component: {fileID: 1243544833}
   m_Layer: 5
   m_Name: AddWater
   m_TagString: Untagged
@@ -2476,7 +2508,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1243544831}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1243544833}
+        m_TargetAssemblyTypeName: PlaceBuildingButtonScript, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1243544831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2515,6 +2559,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243544828}
   m_CullTransparentMesh: 1
+--- !u!114 &1243544833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243544828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed858db182944f04af461f1b3f04ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildBuilding: {fileID: 1243544830}
+  buildPreFab: {fileID: 6361997792809963448, guid: 4766efe02e95b47d9ad21e68dd3786c5, type: 3}
+  timerScript: {fileID: 129923810}
 --- !u!1 &1451113425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,6 +2586,7 @@ GameObject:
   - component: {fileID: 1451113429}
   - component: {fileID: 1451113428}
   - component: {fileID: 1451113427}
+  - component: {fileID: 1451113430}
   m_Layer: 5
   m_Name: AddStone
   m_TagString: Untagged
@@ -2597,7 +2657,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1451113428}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1451113430}
+        m_TargetAssemblyTypeName: PlaceBuildingButtonScript, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1451113428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2636,6 +2708,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451113425}
   m_CullTransparentMesh: 1
+--- !u!114 &1451113430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451113425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed858db182944f04af461f1b3f04ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildBuilding: {fileID: 1451113427}
+  buildPreFab: {fileID: 6330357762073951988, guid: e10378513aae84b91915ad61e37e8ac4, type: 3}
+  timerScript: {fileID: 129923810}
 --- !u!1 &1460431928
 GameObject:
   m_ObjectHideFlags: 0
