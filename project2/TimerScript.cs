@@ -137,15 +137,15 @@ public class TimerScript : MonoBehaviour
 
     private void UpdateResourceAmountStrings()
     {
-        resourceAmountStrings[BuildingScript.BuildingType.FoodBuilding] = "Food: " + resources[BuildingScript.BuildingType.FoodBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.MoneyBuilding] = "Money: " + resources[BuildingScript.BuildingType.MoneyBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.PopulationBuilding] = "Population: " + resources[BuildingScript.BuildingType.PopulationBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.ArmyBuilding] = "Army: " + resources[BuildingScript.BuildingType.ArmyBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.StoneBuilding] = "Stone: " + resources[BuildingScript.BuildingType.StoneBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
-        resourceAmountStrings[BuildingScript.BuildingType.WaterBuilding] = "Water: " + resources[BuildingScript.BuildingType.WaterBuilding] + " / " + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
+        resourceAmountStrings[BuildingScript.BuildingType.FoodBuilding] = "Food: " + resources[BuildingScript.BuildingType.FoodBuilding] + "/" + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
+        resourceAmountStrings[BuildingScript.BuildingType.MoneyBuilding] = "Money: " + resources[BuildingScript.BuildingType.MoneyBuilding] + "/" + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
+        resourceAmountStrings[BuildingScript.BuildingType.PopulationBuilding] = "Population: " + resources[BuildingScript.BuildingType.PopulationBuilding] + "/" + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
+        resourceAmountStrings[BuildingScript.BuildingType.ArmyBuilding] = "Army: " + resources[BuildingScript.BuildingType.ArmyBuilding] + "/" + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
+        resourceAmountStrings[BuildingScript.BuildingType.StoneBuilding] = "Stone: " + resources[BuildingScript.BuildingType.StoneBuilding] + "/" + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
+        resourceAmountStrings[BuildingScript.BuildingType.WaterBuilding] = "Water: " + resources[BuildingScript.BuildingType.WaterBuilding] + "/" + (100 * buildingCounts[BuildingScript.BuildingType.StorageBuilding]);
     }
 
-    public void UpdateResourceChangeStrings()
+    private void UpdateResourceChangeStrings()
     {
         resourceChangeStrings[BuildingScript.BuildingType.FoodBuilding] = "(" + (CalculateFoodChange() > 0 ? "+" + CalculateFoodChange() : CalculateFoodChange()) + ")";
         resourceChangeStrings[BuildingScript.BuildingType.MoneyBuilding] = "(" + (CalculateMoneyChange() > 0 ? "+" + CalculateMoneyChange() : CalculateMoneyChange()) + ")";
@@ -155,7 +155,7 @@ public class TimerScript : MonoBehaviour
         resourceChangeStrings[BuildingScript.BuildingType.WaterBuilding] = "(" + (CalculateWaterChange() > 0 ? "+" + CalculateWaterChange() : CalculateWaterChange()) + ")";
     }
 
-    public void UpdateResourceDisplay()
+    private void UpdateResourceDisplay()
     {
         foodText.text = resourceAmountStrings[BuildingScript.BuildingType.FoodBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.FoodBuilding];
         moneyText.text = resourceAmountStrings[BuildingScript.BuildingType.MoneyBuilding] + " " + resourceChangeStrings[BuildingScript.BuildingType.MoneyBuilding];
@@ -183,10 +183,4 @@ public class TimerScript : MonoBehaviour
 
         buildingCounts = tempBuildingCounts;
     }
-
-    public void IncrementBuildingCount(BuildingScript.BuildingType buildingType)
-    {
-        buildingCounts[buildingType]++;
-    }
-
 }
