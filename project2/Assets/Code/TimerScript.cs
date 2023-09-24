@@ -178,7 +178,7 @@ public class TimerScript : MonoBehaviour
 
 <<<<<<< Updated upstream
     //population, stone, bank, food, army, water
-    //0             1       2    3     4    5
+    //     0       1       2    3     4    5
     void UpdateResourceDisplay()
     {
         foodText.text = "Food: " + PublicVars.Instance.playerResources[3] + " (" + ((2 * PublicVars.Instance.buildingCounts[3]) + (-2 * PublicVars.Instance.buildingCounts[0]) + (-2 * PublicVars.Instance.buildingCounts[4])) + ")";
