@@ -15,16 +15,14 @@ public class PlayerCode : MonoBehaviour
     void Update()
     {
         for (int i = 0; i < PublicVars.Instance.playerResources.Length; i++)
-        {
-            
-            if ((PublicVars.Instance.playerResources[i] >= 200) || (PublicVars.Instance.playerResources[i] <= 0)) {
+        {    
+            if ((PublicVars.Instance.playerResources[i] >= PublicVars.Instance.resourceCap) || (PublicVars.Instance.playerResources[i] <= 0)) {
                 SceneManager.LoadScene("GameOver");
             } 
-            /*
-            if (PublicVars.Instance.playerResources[i] != 50)
-            {
-                SceneManager.LoadScene("GameOver");
-            } */
+
+            if(PublicVars.Instance.playerResources[4] >= 300){
+                SceneManager.LoadScene("Win");
+            }
         }
     }
 }
