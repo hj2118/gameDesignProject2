@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BuyBuildings : MonoBehaviour
 {
-    public Button house, quarry, bank, farm, baracks, dam;
+    public Button house, quarry, bank, farm, baracks, dam, warehouse;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +15,7 @@ public class BuyBuildings : MonoBehaviour
         farm.onClick.AddListener(buyFarm);
         baracks.onClick.AddListener(buyBaracks);
         dam.onClick.AddListener(buyDam);
+        warehouse.onClick.AddListener(buyStorage);
     }
 
     // Update is called once per frame
@@ -25,7 +26,6 @@ public class BuyBuildings : MonoBehaviour
     public void buyHouse(){
         PublicVars.Instance.buildingCounts[0] += 1;
         PublicVars.Instance.playerResources[1] -= 5;
-        Debug.Log("Bought Bich");
     }
     public void buyQuarry(){
         PublicVars.Instance.buildingCounts[1] += 1;
@@ -51,6 +51,10 @@ public class BuyBuildings : MonoBehaviour
         PublicVars.Instance.buildingCounts[5] += 1;
         PublicVars.Instance.playerResources[1] -= 5;
         
+    }
+
+    public void buyStorage(){
+        PublicVars.Instance.resourceCap += 100;
     }
 
 }
