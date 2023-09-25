@@ -11,7 +11,8 @@ public class BuildingScript : MonoBehaviour
         PopulationBuilding,
         ArmyBuilding,
         StoneBuilding,
-        WaterBuilding
+        WaterBuilding,
+        StorageBuilding
     }
 
     public BuildingType buildingType;
