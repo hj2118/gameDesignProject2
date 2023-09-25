@@ -19,7 +19,7 @@ public class TimerScript : MonoBehaviour
     public TextMeshProUGUI stoneText;
     public TextMeshProUGUI waterText;
 
-    
+
     public int GetFood()
     {
         return PublicVars.Instance.playerResources[3];
@@ -29,7 +29,6 @@ public class TimerScript : MonoBehaviour
     {
         return PublicVars.Instance.playerResources[2];
     }
-
     public int GetPopulation()
     {
         return PublicVars.Instance.playerResources[0];
@@ -53,8 +52,8 @@ public class TimerScript : MonoBehaviour
     public void setFood(int newFood)
     {
         PublicVars.Instance.buildingCounts[0] = newFood;
-    }
 
+    }
     public void setMoney(int newMoney)
     {
         PublicVars.Instance.playerResources[3] = newMoney;
@@ -99,20 +98,18 @@ public class TimerScript : MonoBehaviour
 
         if (elapsedTime2 >= 5.0f)
         {
-            Debug.Log("354435435354354345");
             FiveSecondMark();
             elapsedTime2 -= 5.0f;
         }
-
         
     }
-
     void UpdateTimeDisplay()
     {
         int minutes = Mathf.FloorToInt(elapsedTime / 60F);
         int seconds = Mathf.FloorToInt(elapsedTime % 60F);
         timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
     }
+
 
     //population, stone, bank, food, army, water
     //0             1       2    3     4    5
@@ -124,16 +121,20 @@ public class TimerScript : MonoBehaviour
         armyText.text = "Army: " + PublicVars.Instance.playerResources[4] + " (" + ((4 * PublicVars.Instance.buildingCounts[4])) + ")";
         stoneText.text = "Stone: " + PublicVars.Instance.playerResources[1] + " (" + ((2 * PublicVars.Instance.buildingCounts[1])) + ")";
         waterText.text = "Water: " + PublicVars.Instance.playerResources[5] + " (" + ((2 * PublicVars.Instance.buildingCounts[5]) + (8 * PublicVars.Instance.buildingCounts[3]) + (4 * PublicVars.Instance.buildingCounts[0])) + ")";
+
+
     }
 
     void UpdateResources()
     {
+
         PublicVars.Instance.playerResources[3] += (2 * PublicVars.Instance.buildingCounts[3]) + (1 * PublicVars.Instance.buildingCounts[0]) + (2 * PublicVars.Instance.buildingCounts[4]);
         PublicVars.Instance.playerResources[2] += (1 * PublicVars.Instance.buildingCounts[2]) + (1 * PublicVars.Instance.buildingCounts[3]) + (1 * PublicVars.Instance.buildingCounts[4]) + (3 * PublicVars.Instance.buildingCounts[1]);
         PublicVars.Instance.playerResources[0] += (3 * PublicVars.Instance.buildingCounts[0]) + (1 * PublicVars.Instance.buildingCounts[2]) + (4 * PublicVars.Instance.buildingCounts[1]) + (4 * PublicVars.Instance.buildingCounts[5]);
         PublicVars.Instance.playerResources[4] += (4 * PublicVars.Instance.buildingCounts[4]);
         PublicVars.Instance.playerResources[1] += (5 * PublicVars.Instance.buildingCounts[1]);
         PublicVars.Instance.playerResources[5] += (2 * PublicVars.Instance.buildingCounts[5]) + (8 * PublicVars.Instance.buildingCounts[3]) + (4 * PublicVars.Instance.buildingCounts[0]);
+
     }
 
     void FiveSecondMark()

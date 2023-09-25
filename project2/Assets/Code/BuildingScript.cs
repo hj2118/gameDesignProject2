@@ -13,6 +13,8 @@ public class BuildingScript : MonoBehaviour
         StoneBuilding,
         WaterBuilding,
         StorageBuilding
+
+
     }
 
     public BuildingType buildingType;
